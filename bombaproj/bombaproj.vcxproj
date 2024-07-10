@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="bombaproj.cpp" />
     <ClCompile Include="cell.cpp" />
+    <ClCompile Include="decor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cell.h" />
