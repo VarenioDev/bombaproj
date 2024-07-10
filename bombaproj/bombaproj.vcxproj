@@ -129,6 +129,8 @@
   <ItemGroup>
     <ClCompile Include="bombaproj.cpp" />
     <ClCompile Include="cell.cpp" />
+    <ClCompile Include="Frame.cpp" />
+    <ClCompile Include="OutputManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cell.h" />
