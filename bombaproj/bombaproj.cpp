@@ -13,9 +13,26 @@
 
 using namespace std;
 
-int TOTAL_BOMBS = 5;
-int COLUMNS = 5;
-int ROWS = 5;
+int TOTAL_BOMBS, ROWS, COLUMNS;
+
+void DifficultyChoose(int choose) {
+    system("cls");
+    switch (choose) {
+    case 49:
+        COLUMNS = 8;
+        ROWS = 8;
+        TOTAL_BOMBS = 10;
+        break;
+    case 50:
+        COLUMNS = 16;
+        ROWS = 16;
+        TOTAL_BOMBS = 40;
+    case 51:
+        COLUMNS = 30;
+        ROWS = 16;
+        TOTAL_BOMBS = 99;
+    }
+}
 
 void SetColor(int textColor, int bgColor) {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -88,29 +105,13 @@ int main()
     srand(time(0));
 
     //cout << (int)'1';
-
     cout << "Выберите сложность: \n";
-    cout << "1. Лёгкая (8x8) \n" ;
+    cout << "1. Лёгкая (8x8) \n";
     cout << "2. Средняя (16x16) \n";
     cout << "3. Сложная (16x30) \n";
-
+    
     int select = _getch();
-    switch (select) {
-    case 49:
-        COLUMNS = 8;
-        ROWS = 8;
-        TOTAL_BOMBS = 10;
-        break;
-    case 50:
-        COLUMNS = 16;
-        ROWS = 16;
-        TOTAL_BOMBS = 40;
-    case 51:
-        COLUMNS = 30;
-        ROWS = 16;
-        TOTAL_BOMBS = 99;
-    }
-    system("cls");
+    DifficultyChoose(select);
 
     
 
