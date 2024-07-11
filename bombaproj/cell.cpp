@@ -33,22 +33,22 @@ public:
 	int Show() {
 		if (IsFlagged) {
 			SetColor(7, IsUnderCursor*8);
-			cout << "F";
+			cout << " F ";
 			ResetColor();
 		}
 		else if (!IsShowed) {
 			SetColor(7, IsUnderCursor*8);
-			cout << "X";
+			cout << " X ";
 			ResetColor();
 		}
 		else if (IsBomb) {
 			SetColor(7, IsUnderCursor*8);
-			cout << "m";
+			cout << " m ";
 			ResetColor();
 		}
         else {
             SetColor(MinesAround+1, IsUnderCursor*8);
-            cout << MinesAround;
+            cout << " " << MinesAround << " ";
             ResetColor();
         }
 		return 0;
