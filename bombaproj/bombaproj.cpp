@@ -128,7 +128,7 @@ int main()
 
     int select = _getch();
     switch(select){
-    case 1:
+    case 49:
     {
         manager.DifficultyOffer();
         int choose = _getch();
@@ -206,10 +206,10 @@ int main()
         }
     }
         break;
-    case 2:
+    case 50:
         return 0;
         
-    case 3:
+    case 51:
         manager.BestIntroduction();
         cout << "Спасибо, что поиграли в нашу игру!<3";
         return 0;
