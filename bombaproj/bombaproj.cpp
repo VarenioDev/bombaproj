@@ -130,6 +130,8 @@ int main()
     DifficultyChoose(select);
 
     vector<vector<cell>> cells = InitializeMap();
+    manager.SendCounter(TOTAL_BOMBS);
+    manager.SendRules();
 
     std::chrono::steady_clock::time_point startTime;
     StartTimer(startTime);
