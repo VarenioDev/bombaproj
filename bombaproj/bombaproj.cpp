@@ -210,8 +210,9 @@ int main()
         return 0;
 
     case 51:
+        system("cls");
         manager.BestIntroduction();
-        cout << "Спасибо, что поиграли в нашу игру!<3";
+        cout << "Спасибо, что поиграли в нашу игру! До новых встреч! <3  \n\n\n";
         return 0;
     }
 

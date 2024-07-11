@@ -7,6 +7,7 @@ public:
     //1 - intro
     static void BestIntroduction()
     {
+        printf("\n");
         printf("                                                                 00     00                          !!!!    \n");
         printf("     CCCCCCCCCC              AAA            ооооооооооооооо    EEEEEEEEEEEEEE    PPPPPPPPPPPPP      !!!!    \n");
         printf("   CCCCCCCCCCCCCC           AAAAA           ооооооооооооооо    EEEEEEEEEEEEEE    PPP        PPP     !!!!    \n");
