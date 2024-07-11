@@ -21,9 +21,21 @@ public:
 
     }
     //2 - main menu
-    static void MainMenu() {}
+    static void MainMenu() {
+        cout << "1 - Начать игру\n"
+             << "2 - Таблица рекордов\n"
+             << "3 - Выход \n";
+
+        cout << "Ваш выбор: ";
+    }
+
     //2.1 - create game
-    static void DifficultyOffer() {}
+    static void DifficultyOffer() {
+        cout << "Выберите сложность: \n";
+        cout << "1 - Лёгкая  (8x8) \n";
+        cout << "2 - Средняя (16x16) \n";
+        cout << "3 - Сложная (16x30) \n";
+    }
 
 	static void SendCounter(int flags) {
 		cout << "------------------------ \n| Осталось мин: " << flags << "      | \n------------------------\n";

@@ -16,7 +16,7 @@ using namespace std;
 
 int TOTAL_BOMBS, ROWS, COLUMNS;
 
-int getRandomNumber(int min, int max) {
+int getRandomNumber(int min, int max) { // что за неописуемая суета!!???
     random_device rd;
     mt19937 gen(rd());
     uniform_int_distribution<> distr(min, max);
@@ -42,7 +42,7 @@ void DifficultyChoose(int choose) {
         TOTAL_BOMBS = 99;
         break;
     default:
-        cout << "ТЫ ДЕБИЛ?????";
+        cout << "ТЫ ДЕБИЛ????? Запускай заново!";
         break;
     }
 }
@@ -61,7 +61,6 @@ double StopTimer(const std::chrono::steady_clock::time_point& startTime) {
     std::chrono::duration<double> elapsedTime = endTime - startTime;
     return elapsedTime.count();
 }
-
 
 int ShowAround(vector<vector<cell>>& cells, int x, int y) {
     for (int locX = x - 1; locX < x + 2; locX++)
@@ -125,11 +124,8 @@ int main()
     setlocale(LC_ALL, "Russian");
     srand(time(0));
 
-    cout << "Выберите сложность: \n";
-    cout << "1. Лёгкая (8x8) \n";
-    cout << "2. Средняя (16x16) \n";
-    cout << "3. Сложная (16x30) \n";
-    
+    manager.BestIntroduction();
+    manager.DifficultyOffer();
     int select = _getch();
     DifficultyChoose(select);
 
