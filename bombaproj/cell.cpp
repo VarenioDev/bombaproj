@@ -27,9 +27,7 @@ public:
 	void SetMines(int totalMines) {
 		MinesAround = totalMines;
 	}
-	/*void ShowHidden() {
-		std::cout << "X";
-	}*/
+
 	int Show() {
 		if (IsFlagged) {
 			SetColor(7, IsUnderCursor*8);
@@ -47,7 +45,7 @@ public:
 			ResetColor();
 		}
         else {
-            SetColor(MinesAround+1, IsUnderCursor*8);
+            SetColor(MinesAround, IsUnderCursor*8);
             cout << " " << MinesAround << " ";
             ResetColor();
         }

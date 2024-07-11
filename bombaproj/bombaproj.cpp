@@ -10,10 +10,18 @@
 #include <windows.h>
 #include <vector>
 #include <chrono>
+#include <random>
 
 using namespace std;
 
 int TOTAL_BOMBS, ROWS, COLUMNS;
+
+int getRandomNumber(int min, int max) {
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> distr(min, max);
+    return distr(gen);
+}
 
 void DifficultyChoose(int choose) {
     system("cls");
@@ -27,10 +35,15 @@ void DifficultyChoose(int choose) {
         COLUMNS = 16;
         ROWS = 16;
         TOTAL_BOMBS = 40;
+        break;
     case 51:
         COLUMNS = 30;
         ROWS = 16;
         TOTAL_BOMBS = 99;
+        break;
+    default:
+        cout << "ТЫ ДЕБИЛ?????";
+        break;
     }
 }
 
@@ -43,11 +56,10 @@ void StartTimer(std::chrono::steady_clock::time_point& startTime) {
     startTime = std::chrono::steady_clock::now();
 }
 
-// Функция для остановки таймера и получения прошедшего времени в секундах
 double StopTimer(const std::chrono::steady_clock::time_point& startTime) {
     auto endTime = std::chrono::steady_clock::now();
     std::chrono::duration<double> elapsedTime = endTime - startTime;
-    return elapsedTime.count(); // Возвращает время в секундах (double)
+    return elapsedTime.count();
 }
 
 
@@ -64,27 +76,36 @@ int ShowAround(vector<vector<cell>>& cells, int x, int y) {
     return 0;
 }
 
-vector<vector<cell>> InitializeMap(int rows, int cols) {
-    vector<vector<cell>> cells(rows, vector<cell>(cols));
+vector<vector<cell>> InitializeMap() {
+    vector<vector<cell>> cells(ROWS, vector<cell>(COLUMNS));
     int curBombs = 0;
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            int bomb = rand() % 2;
-            curBombs += bomb;
-            cells[i][j].IsBomb = curBombs <= TOTAL_BOMBS ? bomb : 0;
-            //cells[i][j].ShowHidden();
+
+    for (int i = 0;i < TOTAL_BOMBS;) 
+    {
+        int x = getRandomNumber(0, ROWS-1);
+        int y = getRandomNumber(0, COLUMNS-1);
+
+        if (!cells[x][y].IsBomb) {
+            cells[x][y].IsBomb = 1;
+            i++;
+        }
+    };
+
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLUMNS; j++) {
+            cells[i][j].Show();
         }
         cout << "\n";
     }
     cout << "\n";
 
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLUMNS; j++) {
             if (!cells[i][j].IsBomb) {
                 int minesAround = 0;
                 for (int x = i - 1; x < i + 2; x++) {
                     for (int y = j - 1; y < j + 2; y++) {
-                        if (x >= 0 && y >= 0 && x < rows && y < cols) {
+                        if (x >= 0 && y >= 0 && x < ROWS && y < COLUMNS) {
                             minesAround += cells[x][y].IsBomb;
                         }
                     }
@@ -104,7 +125,6 @@ int main()
     setlocale(LC_ALL, "Russian");
     srand(time(0));
 
-    //cout << (int)'1';
     cout << "Выберите сложность: \n";
     cout << "1. Лёгкая (8x8) \n";
     cout << "2. Средняя (16x16) \n";
@@ -113,33 +133,8 @@ int main()
     int select = _getch();
     DifficultyChoose(select);
 
-    
+    vector<vector<cell>> cells = InitializeMap();
 
-    vector<vector<cell>> cells = InitializeMap(ROWS, COLUMNS);
-    /*for (int i = 0; i < 5; i++) {
-        for (int j = 0; j < 5; j++) {
-            int bomb = rand()%2;
-            curBombs += bomb;
-            cells[i][j].IsBomb = curBombs <= TOTAL_BOMBS ? bomb : 0;
-            cells[i][j].ShowHidden();
-        }
-
-        cout << "\n";
-    }
-
-    for (int i = 0; i < 5; i++) {
-        for (int j = 0; j < 5; j++) {
-            if (!cells[i][j].IsBomb)
-            {
-                int minesAround = 0;
-                for (int x = i - 1; x < i+2; x++)
-                    for (int y = j - 1; y < j+2; y++)
-                        if (x >= 0 && y >= 0 && x < 5 && y < 5)
-                            minesAround += cells[x][y].IsBomb;
-                cells[i][j].SetMines(minesAround);
-            }
-        }
-    }*/
     std::chrono::steady_clock::time_point startTime;
     StartTimer(startTime);
     Frame frame(0, 0);
