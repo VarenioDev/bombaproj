@@ -31,6 +31,7 @@ public:
 
     //2.1 - create game
     static void DifficultyOffer() {
+        system("cls");
         cout << "Выберите сложность: \n";
         cout << "1 - Лёгкая  (8x8)   \n";
         cout << "2 - Средняя (16x16) \n";
@@ -39,7 +40,7 @@ public:
 
 	static void SendCounter(int flags) {
 		cout << " ------------------------                     \n"
-             << " | Осталось мин : " << setw(5) << flags << "__|\n"
+             << " | Осталось мин : " << setw(5) << flags << " |\n"
              << " ------------------------                     \n";
 	}
 	static void SendRules() {
